@@ -27,12 +27,12 @@ export default function Reminders({ onSelectEnquiry }) {
     }
   };
 
-  useEffect(() => {
-    fetchReminders();
-    // Poll every 3 seconds instead of every 60 seconds
-    const interval = setInterval(fetchReminders, 3000);
-    return () => clearInterval(interval);
-  }, []);
+  // useEffect(() => {
+  //   fetchReminders();
+  //   // Poll every 3 seconds instead of every 60 seconds
+  //   const interval = setInterval(fetchReminders, 3000);
+  //   return () => clearInterval(interval);
+  // }, []);
 
   // Update helper so seconds are visible during testing
   const timeAgo = (date) => {
@@ -43,19 +43,19 @@ export default function Reminders({ onSelectEnquiry }) {
     return `${Math.floor(hours / 24)}d ago`;
   };
 
-  //
-  // useEffect(() => {
-  //   fetchReminders();
-  //   const interval = setInterval(fetchReminders, 60000);
-  //   return () => clearInterval(interval);
-  // }, []);
+
+  useEffect(() => {
+    fetchReminders();
+    const interval = setInterval(fetchReminders, 60000);
+    return () => clearInterval(interval);
+  }, []);
 
   // const timeAgo = (date) => {
   //   const hours = Math.floor((Date.now() - new Date(date).getTime()) / (1000 * 60 * 60));
   //   if (hours < 24) return `${hours}h ago`;
   //   return `${Math.floor(hours / 24)}d ago`;
   // };
-  //
+
   return (
     <div style={{ position: "relative" }}>
       <button className="btn-icon" onClick={() => setOpen(!open)} title="Follow-up reminders">
